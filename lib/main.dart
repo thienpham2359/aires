@@ -5,7 +5,8 @@ import 'core/route/app_pages.dart';
 import 'core/ui/theme.dart';
 import 'core/util/lang/translation_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const FileReaderApp());
 }
 

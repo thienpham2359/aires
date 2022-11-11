@@ -46,6 +46,7 @@ dependencies:
     git: git@github.com:jibiel/flutter-icons.git
   video_player: ^2.1.10
   open_file: ^3.2.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

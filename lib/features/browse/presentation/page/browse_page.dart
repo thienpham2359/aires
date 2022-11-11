@@ -1,12 +1,13 @@
-import 'package:file_reader/features/browsing/presentation/controller/browsing_controller.dart';
+import 'package:file_reader/core/route/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/custom_divider.dart';
+import '../controller/browse_controller.dart';
 
-class BrowsingPage extends GetView<BrowsingController> {
-  const BrowsingPage({Key? key}) : super(key: key);
+class BrowsePage extends GetView<BrowseController> {
+  const BrowsePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,14 @@ class BrowsingPage extends GetView<BrowsingController> {
                   //         : Category(title: '${category['title']}'),
                   //   );
                   // }
+
+                  switch (index) {
+                    case 0:
+                      Get.toNamed(AppRoutes.DOWNLOAD);
+                      break;
+                    default:
+                      break;
+                  }
                 },
                 contentPadding: const EdgeInsets.all(0),
                 leading: Container(
@@ -55,7 +64,8 @@ class BrowsingPage extends GetView<BrowsingController> {
                       width: 2,
                     ),
                   ),
-                  child: Icon(category['icon'], size: 18, color: category['color']),
+                  child: Icon(category['icon'],
+                      size: 18, color: category['color']),
                 ),
                 title: Text('${category['title']}'),
               );
@@ -69,5 +79,3 @@ class BrowsingPage extends GetView<BrowsingController> {
     );
   }
 }
-
-

@@ -5,7 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/util/file/file_utils.dart';
 
-class BrowsingController extends GetxController {
+class BrowseController extends GetxController {
 
 
   List<String> get downloadFiles  => <String>[].obs;

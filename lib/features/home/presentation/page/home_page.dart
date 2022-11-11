@@ -8,6 +8,7 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.requestPermission();
     return Scaffold(
       appBar: AppBar(
         title: const Text("File Reader"),
@@ -22,7 +23,7 @@ class HomePage extends GetView<HomeController> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ElevatedButton(
-                  onPressed: () => controller.requestPermission(),
+                  onPressed: () => Get.toNamed(AppRoutes.BROWSING),
                   child: const Text("File Browsing"),
                 )
               ],
