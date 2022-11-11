@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/util/file/file_utils.dart';
 

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:file_reader/core/util/extensions.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -49,5 +50,59 @@ class FileUtils {
     } else {
       return '${DateFormat('MMM dd, HH:mm').format(DateTime.parse(iso))}';
     }
+  }
+
+  /// Get all Files on the Device
+  static Future<List<FileSystemEntity>> getAllFiles(
+      {bool showHidden = false}) async {
+    List<Directory> storages = await getStorageList();
+    List<FileSystemEntity> files = <FileSystemEntity>[];
+    for (Directory dir in storages) {
+      List<FileSystemEntity> allFilesInPath = [];
+      // This is important to catch storage errors
+      try {
+        allFilesInPath =
+        await getAllFilesInPath(dir.path, showHidden: showHidden);
+      } catch (e) {
+        allFilesInPath = [];
+        print(e);
+      }
+      files.addAll(allFilesInPath);
+    }
+    return files;
+  }
+
+  /// Get all files
+  static Future<List<FileSystemEntity>> getAllFilesInPath(String path,
+      {bool showHidden = false}) async {
+    List<FileSystemEntity> files = <FileSystemEntity>[];
+    Directory d = Directory(path);
+    List<FileSystemEntity> l = d.listSync();
+    for (FileSystemEntity file in l) {
+      if (FileSystemEntity.isFileSync(file.path)) {
+        if (!showHidden) {
+          if (!file.isHidden) {
+            files.add(file);
+          }
+        } else {
+          files.add(file);
+        }
+      } else {
+        if (!file.path.contains('/storage/emulated/0/Android')) {
+//          print(file.path);
+          if (!showHidden) {
+            if (!file.isHidden) {
+              files.addAll(
+                  await getAllFilesInPath(file.path, showHidden: showHidden));
+            }
+          } else {
+            files.addAll(
+                await getAllFilesInPath(file.path, showHidden: showHidden));
+          }
+        }
+      }
+    }
+//    print(files);
+    return files;
   }
 }

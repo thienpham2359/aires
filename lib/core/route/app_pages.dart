@@ -1,3 +1,5 @@
+import 'package:file_reader/features/image/presentation/binding/image_binding.dart';
+import 'package:file_reader/features/image/presentation/page/image_page.dart';
 import 'package:get/get.dart';
 
 import '../../features/browse/presentation/binding/browse_binding.dart';
@@ -26,6 +28,11 @@ class AppPages {
       name: AppRoutes.DOWNLOAD,
       page: () => const DownloadPage(),
       binding: DownloadBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.IMAGE,
+      page: () => const ImagePage(),
+      binding: ImageBinding(),
     ),
   ];
 }

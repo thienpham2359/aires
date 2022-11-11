@@ -14,22 +14,30 @@ class HomePage extends GetView<HomeController> {
         title: const Text("File Reader"),
       ),
       body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ElevatedButton(
-                  onPressed: () => Get.toNamed(AppRoutes.BROWSING),
-                  child: const Text("File Browsing"),
-                )
-              ],
+        child: Obx(() {
+          return Visibility(
+            visible: controller.isStoragePermissionGranted.value,
+            replacement: const Center(
+              child: Text("Please Grant Storage Permissions"),
             ),
-          ),
-        ),
+            child: SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => Get.toNamed(AppRoutes.BROWSING),
+                      child: const Text("File Browsing"),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        }),
       ),
     );
   }
