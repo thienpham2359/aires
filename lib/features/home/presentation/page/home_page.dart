@@ -21,8 +21,8 @@ class HomePage extends GetView<HomeController> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                OutlinedButton(
-                  onPressed: () => Get.toNamed(AppRoutes.BROWSING),
+                ElevatedButton(
+                  onPressed: () => controller.requestPermission(),
                   child: const Text("File Browsing"),
                 )
               ],
