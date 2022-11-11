@@ -7,7 +7,6 @@ import '../../../../core/util/file/file_utils.dart';
 
 class BrowseController extends GetxController {
 
-
   List<String> get downloadFiles  => <String>[].obs;
 
   void getDownloads() async {

@@ -57,6 +57,17 @@ class BrowsePage extends GetView<BrowseController> {
                       Get.toNamed(AppRoutes.IMAGE,
                           parameters: {"title": categories[index]['title']});
                       break;
+                    case 3:
+                      Get.toNamed(AppRoutes.AUDIO,
+                          parameters: {"title": categories[index]['title']});
+                      break;
+                    case 4:
+                      Get.toNamed(AppRoutes.AUDIO,
+                          parameters: {"title": categories[index]['title']});
+                      break;
+                    case 5:
+                      Get.toNamed(AppRoutes.APP);
+                      break;
                     default:
                       break;
                   }

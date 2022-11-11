@@ -8,7 +8,7 @@ import 'package:mime_type/mime_type.dart';
 
 import '../../../../core/util/file/file_utils.dart';
 
-class ImageController extends GetxController {
+class InstalledAppController extends GetxController {
   final _images = <FileSystemEntity>[].obs;
   RxList<FileSystemEntity?> get images => _images;
   final _loading = false.obs;
