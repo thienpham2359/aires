@@ -40,3 +40,13 @@ const List categories = [
   },
   {'title': 'Apps', 'icon': Icons.android, 'path': '', 'color': Colors.green},
 ];
+
+const List iOSCategories = [
+  {
+    'title': 'Documents',
+    'icon': Feather.file,
+    'path': '',
+    'color': Colors.pink
+  },
+];
+

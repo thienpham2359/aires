@@ -25,8 +25,8 @@ class FileItem extends StatelessWidget {
       contentPadding: const EdgeInsets.only(left: 20),
       leading: FileIcon(file: file),
       title: Text(
-        '${basename(file.path)}',
-        style: TextStyle(fontSize: 14),
+        basename(file.path),
+        style: const TextStyle(fontSize: 14),
         maxLines: 2,
       ),
       subtitle: Text(

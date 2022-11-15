@@ -4,16 +4,16 @@ import 'package:get/get.dart';
 
 import '../../../../core/util/custom_divider.dart';
 import '../../../../core/util/file_item.dart';
-import '../controller/download_controller.dart';
+import '../controller/document_controller.dart';
 
-class DownloadPage extends GetView<DownloadController> {
-  const DownloadPage({Key? key}) : super(key: key);
+class DocumentPage extends GetView<DocumentController> {
+  const DocumentPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Downloads"),
+        title: const Text("Documents"),
       ),
       body: SafeArea(
         child: Obx(() {
@@ -21,14 +21,14 @@ class DownloadPage extends GetView<DownloadController> {
             return const CustomLoader();
           }
           return Visibility(
-            visible: controller.downloadFiles.isNotEmpty,
+            visible: controller.documentFiles.isNotEmpty,
             replacement: const Center(child: Text("No Files Found"),),
             child: ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: controller.downloadFiles.length,
+              itemCount: controller.documentFiles.length,
               itemBuilder: (BuildContext context, int index) {
-                return FileItem(file: controller.downloadFiles[index]!);
+                return FileItem(file: controller.documentFiles[index]!);
               },
               separatorBuilder: (BuildContext context, int index) {
                 return CustomDivider();

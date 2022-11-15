@@ -28,6 +28,16 @@ class FileUtils {
     return filteredPaths;
   }
 
+  /// Return all available Storage path
+  static Future<List<Directory>> getDocumentList() async {
+
+    Directory dir = await getApplicationDocumentsDirectory();
+    print(dir);
+    List<Directory> filteredPaths = <Directory>[];
+    filteredPaths.add(removeDataDirectory(dir.path));
+    return filteredPaths;
+  }
+
   static Directory removeDataDirectory(String path) {
     return Directory(path.split('Android')[0]);
   }

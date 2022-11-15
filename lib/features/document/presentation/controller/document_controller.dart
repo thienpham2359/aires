@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 
 import '../../../../core/util/file/file_utils.dart';
 
-class DownloadController extends GetxController {
-  final _downloadFiles = <FileSystemEntity>[].obs;
-  RxList<FileSystemEntity?> get downloadFiles => _downloadFiles;
+class DocumentController extends GetxController {
+  final _documentFiles = <FileSystemEntity>[].obs;
+  RxList<FileSystemEntity?> get documentFiles => _documentFiles;
 
   final _loading = false.obs;
   RxBool get loading => _loading;
@@ -19,18 +19,17 @@ class DownloadController extends GetxController {
 
   void getDownloads() async {
     _loading.value = true;
-    _downloadFiles.clear();
+    _documentFiles.clear();
 
-    List<Directory> storages = await FileUtils.getStorageList();
+    List<Directory> storages = await FileUtils.getDocumentList();
     for (var dir in storages) {
-      if (Directory('${dir.path}Download').existsSync()) {
+      if (Directory('${dir.path}').existsSync()) {
         List<FileSystemEntity> files =
-            Directory('${dir.path}Download').listSync();
+            Directory('${dir.path}').listSync();
         for (var i = 0; i < files.length; i++) {
           final file = files[i];
           if (FileSystemEntity.isFileSync(file.path)) {
-            _downloadFiles.add(file);
-            print(downloadFiles.length);
+            _documentFiles.add(file);
           }
         }
       }

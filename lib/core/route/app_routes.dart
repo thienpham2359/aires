@@ -7,4 +7,5 @@ abstract class AppRoutes {
   static const IMAGE = "/image";
   static const AUDIO = "/audio";
   static const APP = "/app";
+  static const DOCUMENT = "/document";
 }

@@ -1,5 +1,7 @@
 import 'package:file_reader/features/app/presentation/binding/installed_app_binding.dart';
 import 'package:file_reader/features/app/presentation/page/installed_app_page.dart';
+import 'package:file_reader/features/document/presentation/binding/document_binding.dart';
+import 'package:file_reader/features/document/presentation/page/document_page.dart';
 import 'package:get/get.dart';
 
 import '../../features/audio/presentation/binding/image_binding.dart';
@@ -47,6 +49,11 @@ class AppPages {
       name: AppRoutes.APP,
       page: () => const InstalledAppPage(),
       binding: InstalledAppBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.DOCUMENT,
+      page: () => const DocumentPage(),
+      binding: DocumentBinding(),
     ),
   ];
 }
