@@ -14,6 +14,11 @@ class DocumentPage extends GetView<DocumentController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Documents"),
+        actions: [
+          IconButton(
+              onPressed: () => controller.pickFiles(),
+              icon: const Icon(Icons.add)),
+        ],
       ),
       body: SafeArea(
         child: Obx(() {
@@ -22,13 +27,20 @@ class DocumentPage extends GetView<DocumentController> {
           }
           return Visibility(
             visible: controller.documentFiles.isNotEmpty,
-            replacement: const Center(child: Text("No Files Found"),),
+            replacement: const Center(
+              child: Text("No Files Found"),
+            ),
             child: ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: controller.documentFiles.length,
               itemBuilder: (BuildContext context, int index) {
-                return FileItem(file: controller.documentFiles[index]!);
+                return FileItem(
+                  file: controller.documentFiles[index]!,
+                  onDelete: () {
+                    controller.deleteFile(controller.documentFiles[index]!);
+                  },
+                );
               },
               separatorBuilder: (BuildContext context, int index) {
                 return CustomDivider();

@@ -11,11 +11,13 @@ import 'file_popup.dart';
 class FileItem extends StatelessWidget {
   final FileSystemEntity file;
   final Function? popTap;
+  final Function? onDelete;
 
   FileItem({
     Key? key,
     required this.file,
     this.popTap,
+    this.onDelete,
   }) : super(key: key);
 
   @override
@@ -33,8 +35,18 @@ class FileItem extends StatelessWidget {
         '${FileUtils.formatBytes(File(file.path).lengthSync(), 2)},'
         ' ${FileUtils.formatTime(File(file.path).lastModifiedSync().toIso8601String())}',
       ),
-      trailing:
-          popTap == null ? null : FilePopup(path: file.path, popTap: popTap!),
+      // trailing:
+      //     popTap == null ? null : FilePopup(path: file.path, popTap: popTap!),
+      trailing: onDelete == null
+          ? null
+          : IconButton(
+              onPressed: () {
+                if (onDelete != null) {
+                  onDelete!();
+                }
+              },
+              icon: const Icon(Icons.delete),
+            ),
     );
   }
 }
