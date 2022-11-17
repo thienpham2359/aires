@@ -1,4 +1,4 @@
-package com.media.filereader.file_reader
+package com.media.aires
 
 import io.flutter.embedding.android.FlutterActivity
 

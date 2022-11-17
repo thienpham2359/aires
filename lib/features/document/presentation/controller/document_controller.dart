@@ -17,9 +17,6 @@ class DocumentController extends GetxController {
 
   RxBool get loading => _loading;
 
-  List<PlatformFile>? _paths;
-  final FileType _pickingType = FileType.any;
-
   @override
   void onInit() {
     super.onInit();
@@ -48,21 +45,16 @@ class DocumentController extends GetxController {
 
   void pickFiles() async {
     try {
-      _paths = (await FilePicker.platform.pickFiles(
-        type: _pickingType,
+      final paths = (await FilePicker.platform.pickFiles(
+        type: FileType.any,
         allowMultiple: false,
         onFileLoading: (FilePickerStatus status) => print(status),
         allowedExtensions: null,
-      ))?.files;
+      ))
+          ?.files;
 
-      final File file = File(_paths![0].path ?? "");
-      var basNameWithExtension = path.basename(file.path);
-
-      Directory directory = await getApplicationDocumentsDirectory();
-      final filePath = "${directory.path}/$basNameWithExtension";
-      print(filePath);
-      _moveFile(file, filePath);
-
+      final File file = File(paths![0].path ?? "");
+      _moveFileToDocumentFolder(file);
     } on PlatformException catch (e) {
       print('Unsupported operation' + e.toString());
     } catch (e) {
@@ -72,6 +64,15 @@ class DocumentController extends GetxController {
 
   void deleteFile(FileSystemEntity file) async {
     file.deleteSync();
+    getDownloads();
+  }
+
+  void _moveFileToDocumentFolder(File file) async {
+    var basNameWithExtension = path.basename(file.path);
+    Directory directory = await getApplicationDocumentsDirectory();
+    final filePath = "${directory.path}/$basNameWithExtension";
+    print(filePath);
+    _moveFile(file, filePath);
     getDownloads();
   }
 

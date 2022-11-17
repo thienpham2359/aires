@@ -1,4 +1,5 @@
 import 'package:file_reader/core/route/app_routes.dart';
+import 'package:file_reader/core/util/strings.dart';
 import 'package:file_reader/features/home/presentation/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ class HomePage extends GetView<HomeController> {
     controller.requestPermission();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("File Reader"),
+        title: Text(AppStrings.appName),
       ),
       body: SafeArea(
         child: Obx(() {
@@ -31,6 +32,10 @@ class HomePage extends GetView<HomeController> {
                     ElevatedButton(
                       onPressed: () => Get.toNamed(AppRoutes.BROWSING),
                       child: const Text("File Browsing"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => Get.toNamed(AppRoutes.ENCRYPT),
+                      child: const Text("Encrypt & Decrypt"),
                     )
                   ],
                 ),

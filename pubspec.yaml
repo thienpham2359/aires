@@ -51,6 +51,7 @@ dependencies:
   path: ^1.7.0
   device_apps: ^2.2.0
   file_picker: ^4.6.1
+  encrypt: ^5.0.1
 
 dev_dependencies:
   flutter_test:

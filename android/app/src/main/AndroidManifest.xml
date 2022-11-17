@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.media.filereader.file_reader">
+    package="com.media.aires">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
    <application
-        android:label="File Reader"
+        android:label="Aires"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
