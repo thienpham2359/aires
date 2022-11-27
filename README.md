@@ -1,16 +1,34 @@
-# file_reader
+# Flutter Aires
 
-A new Flutter project.
+A demo project.
 
-## Getting Started
+Build for iOS
+-------------
 
-This project is a starting point for a Flutter application.
+1.  Release build
 
-A few resources to get you started if this is your first Flutter project:
+```plain
+flutter build ios --release
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1.  Debug build
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```plain
+flutter build ios --debug
+```
+
+Build for Android
+-----------------
+
+1.  Release build
+
+```plain
+flutter build android --release
+```
+
+1.  Debug build
+
+```plain
+flutter build android --debug
+```
+

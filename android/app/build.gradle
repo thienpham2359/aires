@@ -21,10 +21,15 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-//def compileVersion = localProperties.getProperty('flutter.compileSdkVersion')
-//if (compileVersion == null) {
-//    compileVersion = flutter.compileSdkVersion
-//}
+def compileVersion = localProperties.getProperty('flutter.compileSdkVersion')
+if (compileVersion == null) {
+    compileVersion = flutter.compileSdkVersion
+}
+
+def targetVersion = localProperties.getProperty('flutter.targetSdkVersion')
+if (targetVersion == null) {
+    targetVersion = flutter.compileSdkVersion
+}
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'

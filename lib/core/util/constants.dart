@@ -14,35 +14,6 @@ List<T> map<T>(List list, Function handler) {
 
 const List categories = [
   {
-    'title': 'Downloads',
-    'icon': Feather.download,
-    'path': '',
-    'color': Colors.purple
-  },
-  {
-    'title': 'Images',
-    'icon': Feather.image,
-    'path': '',
-    'color': Colors.blue
-  },
-  {'title': 'Videos', 'icon': Feather.video, 'path': '', 'color': Colors.red},
-  {
-    'title': 'Audio',
-    'icon': Feather.headphones,
-    'path': '',
-    'color': Colors.teal
-  },
-  {
-    'title': 'Documents & Others',
-    'icon': Feather.file,
-    'path': '',
-    'color': Colors.pink
-  },
-  {'title': 'Apps', 'icon': Icons.android, 'path': '', 'color': Colors.green},
-];
-
-const List iOSCategories = [
-  {
     'title': 'Documents',
     'icon': Feather.file,
     'path': '',
@@ -50,3 +21,20 @@ const List iOSCategories = [
   },
 ];
 
+const List importOtps = [
+  {
+    'title': 'Gallery',
+    'icon': Feather.image,
+  },
+  {
+    'title': 'Take photo',
+    'icon': Feather.image,
+  },{
+    'title': 'Take video',
+    'icon': Feather.video,
+  },
+  {
+    'title': 'File manager',
+    'icon': Feather.file,
+  },
+];

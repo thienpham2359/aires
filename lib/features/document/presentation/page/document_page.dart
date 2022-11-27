@@ -1,7 +1,11 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:file_reader/core/ui/widget/custom_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
+import '../../../../core/util/constants.dart';
 import '../../../../core/util/custom_divider.dart';
 import '../../../../core/util/file_item.dart';
 import '../controller/document_controller.dart';
@@ -16,8 +20,9 @@ class DocumentPage extends GetView<DocumentController> {
         title: const Text("Documents"),
         actions: [
           IconButton(
-              onPressed: () => controller.pickFiles(),
-              icon: const Icon(Icons.add)),
+            onPressed: () => _openBottomSheet(),
+            icon: const Icon(Icons.add),
+          ),
         ],
       ),
       body: SafeArea(
@@ -48,6 +53,53 @@ class DocumentPage extends GetView<DocumentController> {
             ),
           );
         }),
+      ),
+    );
+  }
+
+  void _openBottomSheet() {
+    Get.bottomSheet(
+      Container(
+        height: Get.height / 3,
+        color: Colors.white,
+        child: ListView.builder(
+          itemCount: importOtps.length,
+          itemBuilder: (context, index) {
+            Map opt = importOtps[index];
+            return ListTile(
+              onTap: () async {
+                switch (index) {
+                  case 0:
+                    if (await Permission.mediaLibrary.isGranted) {
+                      controller.pickFiles(FileType.media);
+                      Get.back();
+                    } else {
+                      await Permission.mediaLibrary.request();
+                    }
+                    break;
+                  case 1:
+                    controller.pickImage(ImageSource.camera);
+                    Get.back();
+                    break;
+                  case 2:
+                    controller.pickVideo(ImageSource.camera);
+                    Get.back();
+                    break;
+                  case 3:
+                    if (await Permission.storage.isGranted) {
+                      controller.pickFiles(FileType.any);
+                      Get.back();
+                    } else {
+                      await Permission.storage.request();
+                    }
+                    break;
+                }
+              },
+              leading: Icon(opt['icon']),
+              title: Text(opt['title']),
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
@@ -43,10 +44,10 @@ class DocumentController extends GetxController {
     _loading.value = false;
   }
 
-  void pickFiles() async {
+  void pickFiles(FileType type) async {
     try {
       final paths = (await FilePicker.platform.pickFiles(
-        type: FileType.any,
+        type: type,
         allowMultiple: false,
         onFileLoading: (FilePickerStatus status) => print(status),
         allowedExtensions: null,
@@ -61,6 +62,29 @@ class DocumentController extends GetxController {
       print(e);
     }
   }
+
+  void pickImage(ImageSource source) async {
+    try {
+      final imagePicker = ImagePicker();
+      XFile? image = await imagePicker.pickImage(source: source);
+      final file = File(image?.path ?? "");
+      _moveFileToDocumentFolder(file);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void pickVideo(ImageSource source) async {
+    try {
+      final imagePicker = ImagePicker();
+      XFile? image = await imagePicker.pickVideo(source: source);
+      final file = File(image?.path ?? "");
+      _moveFileToDocumentFolder(file);
+    } catch (e) {
+      print(e);
+    }
+  }
+
 
   void deleteFile(FileSystemEntity file) async {
     file.deleteSync();

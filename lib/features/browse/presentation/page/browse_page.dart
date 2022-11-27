@@ -22,20 +22,14 @@ class BrowsePage extends GetView<BrowseController> {
           child: ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount:
-            Platform.isAndroid ? categories.length : iOSCategories.length,
+            itemCount: categories.length,
             itemBuilder: (BuildContext context, int index) {
-              Map category =
-              Platform.isAndroid ? categories[index] : iOSCategories[index];
+              Map category = categories[index];
               return ListTile(
                 onTap: () {
                   switch (index) {
                     case 0:
-                      if (Platform.isAndroid) {
-                        Get.toNamed(AppRoutes.DOWNLOAD);
-                      } else {
-                        Get.toNamed(AppRoutes.DOCUMENT);
-                      }
+                      Get.toNamed(AppRoutes.DOCUMENT);
                       break;
                     case 1:
                       Get.toNamed(AppRoutes.IMAGE,
