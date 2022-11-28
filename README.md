@@ -23,12 +23,12 @@ Build for Android
 1.  Release build
 
 ```plain
-flutter build android --release
+flutter build apk --release
 ```
 
 1.  Debug build
 
 ```plain
-flutter build android --debug
+flutter build apk --debug
 ```
 
