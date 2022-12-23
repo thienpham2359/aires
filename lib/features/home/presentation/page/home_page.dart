@@ -26,6 +26,7 @@ class HomePage extends GetView<HomeController> {
                   onPressed: () => Get.toNamed(AppRoutes.BROWSING),
                   child: const Text("File Browsing"),
                 ),
+                const SizedBox(height: 50),
                 ElevatedButton(
                   onPressed: () => Get.toNamed(AppRoutes.ENCRYPT),
                   child: const Text("Encrypt & Decrypt"),

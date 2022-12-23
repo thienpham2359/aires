@@ -92,6 +92,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
+  drag_and_drop_windows:
+    dependency: "direct main"
+    description:
+      name: drag_and_drop_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   encrypt:
     dependency: "direct main"
     description:
@@ -132,15 +139,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_icons:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "08896106a8486e8e29ac0904dc47bf79e762fc5a"
-      url: "git@github.com:jibiel/flutter-icons.git"
-    source: git
-    version: "2.0.0"
   flutter_isolate:
     dependency: transitive
     description:

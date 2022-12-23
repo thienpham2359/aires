@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 const defaultPadding = 20.0;
 
@@ -15,7 +14,7 @@ List<T> map<T>(List list, Function handler) {
 const List categories = [
   {
     'title': 'Documents',
-    'icon': Feather.file,
+    'icon': Icons.file_copy_outlined,
     'path': '',
     'color': Colors.pink
   },
@@ -24,17 +23,17 @@ const List categories = [
 const List importOtps = [
   {
     'title': 'Gallery',
-    'icon': Feather.image,
+    'icon': Icons.image,
   },
   {
     'title': 'Take photo',
-    'icon': Feather.image,
+    'icon': Icons.image,
   },{
     'title': 'Take video',
-    'icon': Feather.video,
+    'icon': Icons.video_camera_back,
   },
   {
     'title': 'File manager',
-    'icon': Feather.file,
+    'icon':Icons.file_copy_outlined,
   },
 ];

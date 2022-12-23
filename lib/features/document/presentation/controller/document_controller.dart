@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+import 'package:drag_and_drop_windows/drag_and_drop_windows.dart' as dd;
 
 import '../../../../core/util/file/file_utils.dart';
 
@@ -18,13 +20,25 @@ class DocumentController extends GetxController {
 
   RxBool get loading => _loading;
 
+  StreamSubscription? _subscription;
+
   @override
   void onInit() {
     super.onInit();
-    getDownloads();
+    _getDownloads();
+
+    if (Platform.isWindows){
+      _subscription ??= dd.dropEventStream.listen((paths) async {
+        for (var path in paths) {
+          final File file = File(path);
+          await _moveFileToDocumentFolder(file);
+        }
+        _getDownloads();
+      });
+    }
   }
 
-  void getDownloads() async {
+  Future _getDownloads() async {
     _loading.value = true;
     _documentFiles.clear();
 
@@ -56,6 +70,7 @@ class DocumentController extends GetxController {
 
       final File file = File(paths![0].path ?? "");
       _moveFileToDocumentFolder(file);
+      _getDownloads();
     } on PlatformException catch (e) {
       print('Unsupported operation' + e.toString());
     } catch (e) {
@@ -69,6 +84,7 @@ class DocumentController extends GetxController {
       XFile? image = await imagePicker.pickImage(source: source);
       final file = File(image?.path ?? "");
       _moveFileToDocumentFolder(file);
+      _getDownloads();
     } catch (e) {
       print(e);
     }
@@ -80,6 +96,7 @@ class DocumentController extends GetxController {
       XFile? image = await imagePicker.pickVideo(source: source);
       final file = File(image?.path ?? "");
       _moveFileToDocumentFolder(file);
+      _getDownloads();
     } catch (e) {
       print(e);
     }
@@ -88,16 +105,15 @@ class DocumentController extends GetxController {
 
   void deleteFile(FileSystemEntity file) async {
     file.deleteSync();
-    getDownloads();
+    _getDownloads();
   }
 
-  void _moveFileToDocumentFolder(File file) async {
+  Future _moveFileToDocumentFolder(File file) async {
     var basNameWithExtension = path.basename(file.path);
     Directory directory = await getApplicationDocumentsDirectory();
     final filePath = "${directory.path}/$basNameWithExtension";
     print(filePath);
-    _moveFile(file, filePath);
-    getDownloads();
+    await _moveFile(file, filePath);
   }
 
   Future<File> _moveFile(File sourceFile, String newPath) async {

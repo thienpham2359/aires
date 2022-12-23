@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:file_reader/core/ui/widget/video_thumbnail.dart';
 import 'package:file_reader/core/util/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
@@ -97,7 +96,7 @@ class _WhatsAppItem extends StatelessWidget {
                   IconButton(
                     onPressed: () => saveMedia(),
                     icon: Icon(
-                      Feather.download,
+                      Icons.download,
                       color: Colors.white,
                       size: 16.0,
                     ),
